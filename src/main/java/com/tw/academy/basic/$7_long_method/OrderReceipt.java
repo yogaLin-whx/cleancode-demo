@@ -49,18 +49,10 @@ public class OrderReceipt {
 
     public void printHeader(StringBuilder output) {
         output.append("======Printing Orders======\n");
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
+        output.append(order.printCustomerDetail());
     }
 
     public void getLineItemString(StringBuilder output, LineItem lineItem) {
-        output.append(lineItem.getDescription());
-        output.append('\t');
-        output.append(lineItem.getPrice());
-        output.append('\t');
-        output.append(lineItem.getQuantity());
-        output.append('\t');
-        output.append(lineItem.totalAmount());
-        output.append('\n');
+        output.append(lineItem.toString());
     }
 }

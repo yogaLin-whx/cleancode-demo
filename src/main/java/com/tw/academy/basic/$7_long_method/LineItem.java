@@ -27,4 +27,8 @@ public class LineItem {
     double totalAmount() {
         return price * quantity;
     }
+
+    public String toString() {
+        return this.description + '\t' + this.price + '\t' + this.quantity + '\t' + this.totalAmount() + '\n';
+    }
 }

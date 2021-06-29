@@ -24,4 +24,8 @@ public class Order {
     public List<LineItem> getLineItems() {
         return lineItems;
     }
+
+    public String printCustomerDetail() {
+        return this.customerName + this.address;
+    }
 }
