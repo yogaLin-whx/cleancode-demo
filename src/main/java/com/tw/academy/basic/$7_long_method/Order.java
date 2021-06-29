@@ -30,4 +30,19 @@ public class Order {
     public String printCustomerDetail() {
         return this.customerName + this.address;
     }
+
+    public String lineItemsDetail() {
+        StringBuilder output = new StringBuilder();
+        for (LineItem lineItem : getLineItems()) {
+            output.append(lineItem.toString());
+
+            // calculate sales tax @ rate of 10%
+            double salesTax = lineItem.totalAmount() * .10;
+            totalSalesTax += salesTax;
+
+            // calculate total amount of lineItem = price * quantity + 10 % sales tax
+            totalAmount += lineItem.totalAmount() + salesTax;
+        }
+        return output.toString();
+    }
 }

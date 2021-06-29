@@ -38,20 +38,7 @@ public class OrderReceipt {
     }
 
     public void getLineItemsDetail() {
-        lineItemsDetail();
-    }
-
-    public void lineItemsDetail() {
-        for (LineItem lineItem : order.getLineItems()) {
-            output.append(lineItem.toString());
-
-            // calculate sales tax @ rate of 10%
-            double salesTax = lineItem.totalAmount() * .10;
-            order.totalSalesTax += salesTax;
-
-            // calculate total amount of lineItem = price * quantity + 10 % sales tax
-            order.totalAmount += lineItem.totalAmount() + salesTax;
-        }
+        this.output.append(order.lineItemsDetail());
     }
 
 }
