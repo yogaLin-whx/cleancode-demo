@@ -17,8 +17,6 @@ public class OrderReceipt {
 
     public String printReceipt() {
         output = new StringBuilder();
-        order.totalSalesTax = 0d;
-        order.totalAmount = 0d;
         printHeader();
 
         getLineItemsDetail();

@@ -3,8 +3,8 @@ package com.tw.academy.basic.$7_long_method;
 import java.util.List;
 
 public class Order {
-    static double totalSalesTax;
-    static double totalAmount;
+    double totalSalesTax;
+    double totalAmount;
     String customerName;
     String address;
     List<LineItem> lineItems;
@@ -32,6 +32,8 @@ public class Order {
     }
 
     public String lineItemsDetail() {
+        this.totalSalesTax = 0d;
+        this.totalAmount = 0d;
         StringBuilder output = new StringBuilder();
         for (LineItem lineItem : getLineItems()) {
             output.append(lineItem.toString());
