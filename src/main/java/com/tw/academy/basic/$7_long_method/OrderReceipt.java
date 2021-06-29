@@ -9,49 +9,49 @@ package com.tw.academy.basic.$7_long_method;
  */
 public class OrderReceipt {
     private Order order;
-    double totalSalesTax;
-    double totalAmount;
     private StringBuilder output;
 
     public OrderReceipt(Order order) {
         this.order = order;
     }
 
-    //Deprecated
-    public String printCustomerName() {
-        return order.getCustomerName();
-    }
-
-    //todo: rename -- Tom
     public String printReceipt() {
         output = new StringBuilder();
-        totalSalesTax = 0d;
-        totalAmount = 0d;
-        output.append("======Printing Orders======\n");
-        output.append(order.printCustomerDetail());
+        order.totalSalesTax = 0d;
+        order.totalAmount = 0d;
+        printHeader();
 
         getLineItemsDetail();
 
-        printResult(totalSalesTax, totalAmount);
+        printResult();
         return output.toString();
     }
 
+    public void printResult() {
+        this.output.append("Sales Tax").append('\t').append(order.totalSalesTax);
+        this.output.append("Total Amount").append('\t').append(order.totalAmount);
+    }
+
+    public void printHeader() {
+        output.append("======Printing orders======\n");
+        output.append(order.printCustomerDetail());
+    }
+
     public void getLineItemsDetail() {
+        lineItemsDetail();
+    }
+
+    public void lineItemsDetail() {
         for (LineItem lineItem : order.getLineItems()) {
             output.append(lineItem.toString());
 
             // calculate sales tax @ rate of 10%
             double salesTax = lineItem.totalAmount() * .10;
-            totalSalesTax += salesTax;
+            order.totalSalesTax += salesTax;
 
             // calculate total amount of lineItem = price * quantity + 10 % sales tax
-            totalAmount += lineItem.totalAmount() + salesTax;
+            order.totalAmount += lineItem.totalAmount() + salesTax;
         }
-    }
-
-    public void printResult(double totalSalesTax, double totalAmount) {
-        this.output.append("Sales Tax").append('\t').append(totalSalesTax);
-        this.output.append("Total Amount").append('\t').append(totalAmount);
     }
 
 }

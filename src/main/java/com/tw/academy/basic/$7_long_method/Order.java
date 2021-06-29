@@ -3,6 +3,8 @@ package com.tw.academy.basic.$7_long_method;
 import java.util.List;
 
 public class Order {
+    static double totalSalesTax;
+    static double totalAmount;
     String customerName;
     String address;
     List<LineItem> lineItems;
