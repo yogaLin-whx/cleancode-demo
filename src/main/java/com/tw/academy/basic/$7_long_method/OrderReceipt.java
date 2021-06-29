@@ -22,11 +22,10 @@ public class OrderReceipt {
     //todo: rename -- Tom
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
-        output.append("======Printing Orders======\n");
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
         double totalSalesTax = 0d;
         double totalAmount = 0d;
+        printHeader(output);
+
 
         for (LineItem lineItem : order.getLineItems()) {
             getLineItemString(output, lineItem);
@@ -39,9 +38,19 @@ public class OrderReceipt {
             totalAmount += lineItem.totalAmount() + salesTax;
         }
 
+        printResult(output, totalSalesTax, totalAmount);
+        return output.toString();
+    }
+
+    public void printResult(StringBuilder output, double totalSalesTax, double totalAmount) {
         output.append("Sales Tax").append('\t').append(totalSalesTax);
         output.append("Total Amount").append('\t').append(totalAmount);
-        return output.toString();
+    }
+
+    public void printHeader(StringBuilder output) {
+        output.append("======Printing Orders======\n");
+        output.append(order.getCustomerName());
+        output.append(order.getCustomerAddress());
     }
 
     public void getLineItemString(StringBuilder output, LineItem lineItem) {
